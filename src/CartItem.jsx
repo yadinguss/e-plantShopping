@@ -6,7 +6,7 @@ import './CartItem.css';
 const Cart = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
-
+    console.log("cart", cart)
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
     return cart.reduce((total, item) => total + item.cost * item.quantity, 0);
@@ -49,7 +49,7 @@ const Cart = ({ onContinueShopping }) => {
             <img className="cart-item-image" src={item.image} alt={item.name} />
             <div className="cart-item-details">
               <div className="cart-item-name">{item.name}</div>
-              <div className="cart-item-cost">{item.cost}</div>
+              <div className="cart-item-cost">${item.cost}</div>
               <div className="cart-item-quantity">
                 <button className="cart-item-button cart-item-button-dec" onClick={() => handleDecrement(item)}>-</button>
                 <span className="cart-item-quantity-value"></span>
@@ -68,14 +68,6 @@ const Cart = ({ onContinueShopping }) => {
         <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
       <div>
-      <h2>{item.name}</h2>
-      <input 
-        type="number" 
-        value={item.quantity} 
-        onChange={handleQuantityChange} 
-        min="1"
-      />
-      <button onClick={handleRemove}>Remove</button>
     </div>
   );
 );
